@@ -16,20 +16,25 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function actionLogin(Request $request) {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+    public function actionLogin(Request $request)
+    {
+        return redirect()->route('dashboard.index');
+    }
 
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            // return redirect()->route('layout.app');
-            return redirect()->route('dashboard.index');
-        }
+    // public function actionLogin(Request $request) {
+    //     $request->validate([
+    //         'email' => 'required',
+    //         'password' => 'required',
+    //     ]);
 
-    } 
+    //     $credentials = $request->only('email', 'password');
+    //     if (Auth::attempt($credentials)) {
+    //         $request->session()->regenerate();
+    //         return redirect()->to('dashboard.index');
+    //     }
+    //     return redirect()->to('login');
+
+    // } 
 
 }
 

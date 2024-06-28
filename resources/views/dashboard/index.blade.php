@@ -43,7 +43,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>999</h3>
+                <h3>888</h3>
 
                 <p>New Orders</p>
               </div>

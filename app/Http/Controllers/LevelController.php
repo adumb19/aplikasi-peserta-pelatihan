@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Level;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class LevelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('dashboard.index');
+        $data = Level::orderBy('id', 'desc')->get();
+
+        return view('level.index', compact('data'));
     }
 
     /**
@@ -19,7 +22,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('level.create');
     }
 
     /**
@@ -27,7 +30,9 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Level::create($request->all());
+
+        return redirect()->to('level');
     }
 
     /**
@@ -43,7 +48,9 @@ class DashboardController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $edit = Level::find($id);
+
+        return view('level.edit', compact('edit'));
     }
 
     /**
@@ -51,7 +58,11 @@ class DashboardController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Level::where('id', $id)->update([
+            'nama_level' => $request->nama_level
+        ]);
+
+        return redirect()->to('level');
     }
 
     /**
@@ -59,6 +70,8 @@ class DashboardController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Level::where('id', $id)->delete();
+
+        return redirect()->to('level');
     }
 }

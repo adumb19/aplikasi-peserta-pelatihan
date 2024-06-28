@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('login', [LoginController::class, 'index']);
 Route::post('actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');

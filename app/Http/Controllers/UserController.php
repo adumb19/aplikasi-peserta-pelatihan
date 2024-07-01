@@ -65,6 +65,8 @@ class UserController extends Controller
         //     'password' => $request->password
         // ]);
 
+
+        //data yang tidak ingin diedit boleh dibiarkan
         $data = [];
 
         if ($request->filled('name')) {

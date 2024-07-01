@@ -42,6 +42,15 @@
             <input name="name" type="text" class="form-control" placeholder="Masukan Nama Anda">
         </div>
         <div class="form-group mb-3">
+          <label for="">Level</label>
+          <select name="id_level" class="form-control">
+            <option value="">Pilih Level</option>
+            @foreach ($data as $key)
+            <option value="{{ $key->id_level }}">{{ $key->nama_level }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="form-group mb-3">
             <label for="">Email</label>
             <input name="email" type="text" class="form-control" placeholder="Masukan Email Anda">
         </div>

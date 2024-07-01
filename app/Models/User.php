@@ -22,6 +22,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    //ORM with levels table
+    public function level() {
+        return $this->belongsTo(Level::class,'id_level','id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -54,7 +54,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->name }}</td>
-                    <td></td>
+                    <td>{{ $d->level->nama_level }}</td>
                     <td>{{ $d->email }}</td>
                     <td>
                       <a href="{{ route('user.edit', $d->id) }}" class="btn btn-ss bg-success"><i class="fas fa-edit"></i></a>

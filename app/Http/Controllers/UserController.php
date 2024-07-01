@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Level;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::orderBy('id', 'desc')->get();
+        $data = User::with('level')->orderBy('id', 'desc')->get();
         
         return view('user.index', compact('data'));
     }
@@ -23,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $data = Level::all();
+        return view('user.create', compact('data'));
     }
 
     /**
@@ -31,7 +33,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        // User::create($request->all());
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'id_level' => $request->id_level,
+        ]);
 
         return redirect()->to('user');
     }
@@ -50,8 +59,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $edit = User::find($id);
-
-        return view('user.edit', compact('edit'));
+        $data = Level::all();
+        return view('user.edit', compact('edit', 'data'));
     }
 
     /**

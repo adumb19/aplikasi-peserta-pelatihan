@@ -15,7 +15,7 @@
   @include('inc.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper p-5">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -45,8 +45,8 @@
           <label for="">Level</label>
           <select name="id_level" class="form-control">
             <option value="">Pilih Level</option>
-            @foreach ($data as $key)
-            <option value="{{ $key->id_level }}">{{ $key->nama_level }}</option>
+            @foreach ($data as $key => $d)
+            <option value="{{ $d->id }}">{{ $d->nama_level }}</option>
             @endforeach
           </select>
         </div>

@@ -37,9 +37,10 @@ class UserController extends Controller
 
         User::create([
             'name' => $request->name,
+            'id_level' => $request->id_level,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'id_level' => $request->id_level,
+            
         ]);
 
         return redirect()->to('user');

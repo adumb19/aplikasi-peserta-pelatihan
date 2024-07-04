@@ -15,7 +15,7 @@
   @include('inc.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper p-5">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -41,6 +41,15 @@
         <div class="form-group mb-3">
             <label for="">Nama</label>
             <input value="{{ $edit->name }}" name="name" type="text" class="form-control" placeholder="Masukan Nama Anda">
+        </div>
+        <div class="form-group mb-3">
+          <label for="">Level</label>
+          <select name="id_level" class="form-control">
+            <option value="">Pilih Level</option>
+            @foreach ($data as $key => $d)
+            <option value="{{ $d->id }}">{{ $data->nama_level }}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group mb-3">
             <label for="">Email</label>

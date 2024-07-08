@@ -36,6 +36,9 @@
 
     <!-- Main content -->
     <div class="table-responsive">
+      <div align='right' class="mb-3">
+        <a href="{{ route('jurusan.create') }}" class="btn btn-primary">Tambah Data</a>
+      </div>
         <table class="table table-bordered" id="datatables">
             <thead>
                 <tr>
@@ -45,11 +48,20 @@
                 </tr>
             </thead>
             <tbody>
+              @foreach ($data as $d)
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $d->nama_jurusan }}</td>
+                    <td>
+                      <a href="{{ route('jurusan.edit', $d->id) }}" class="btn btn-ss bg-success"><i class="fas fa-edit"></i></a>
+                      <form action="{{ route('jurusan.destroy', $d->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-ss bg-danger"><i class="fas fa-trash"></i></button>
+                      </form>
+                    </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

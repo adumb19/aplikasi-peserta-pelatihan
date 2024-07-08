@@ -69,24 +69,13 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // User::where('id', $id)->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => $request->password
-        // ]);
-
-
         //data yang tidak ingin diedit boleh dibiarkan
         $data = [];
-
-        if ($request->filled('name')) {
-            $data['name'] = $request->name;
-        }
-        if ($request->filled('email')) {
-            $data['email'] = $request->email;
-        }
         if ($request->filled('password')) {
             $data['password'] = $request->password;
+        }
+        if ($request->filled('id_level')) {
+            $data['id_level'] = $request->id_level;
         }
 
         User::where('id', $id)->update($data);

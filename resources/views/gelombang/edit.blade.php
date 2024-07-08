@@ -21,7 +21,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Level</h1>
+            <h1 class="m-0">Edit Gelombang</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -35,36 +35,27 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="table-responsive">
-        <div align='right' class="mb-3">
-            <a href="{{ route('level.create') }}" class="btn btn-primary">Tambah Data</a>
+    <form action="{{ route('gelombang.update', $edit->id) }}" method="POST">
+        @csrf
+        @method('put')
+        <div class="form-group mb-3">
+            <label for="">Nama Gelombang</label>
+            <input value="{{ $edit->nama_gelombang }}" name="nama_gelombang" type="text" class="form-control" placeholder="Masukan Nama Gelombang">
         </div>
-        <table class="table table-bordered" id="datatables">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Level</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $key => $d)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $d->nama_level }}</td>
-                    <td>
-                        <a href="{{ route('level.edit', $d->id) }}" class="btn btn-ss bg-success"><i class="fas fa-edit"></i></a>
-                        <form action="{{ route('level.destroy', $d->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-ss bg-danger"><i class="fas fa-trash"></i></button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+        <div class="form-group mb-3">
+            <label for="">Status</label>
+            <select name="status" id="" class="form-control">
+                <option value="" disabled selected>Pilih Status</option>
+                <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <input type="submit" class="btn btn-primary" value="Simpan">
+            <input type="reset" class="btn btn-danger" value="Reset">
+            <a href="{{ url()->previous() }}" class=" btn btn-info">Kembali</a>
+        </div>
+    </form>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

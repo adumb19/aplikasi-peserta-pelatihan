@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
 use Illuminate\Http\Request;
 
 class GelombangController extends Controller
@@ -11,7 +12,9 @@ class GelombangController extends Controller
      */
     public function index()
     {
-        return view('gelombang.index');
+        $data = Gelombang::orderBy('id', 'desc')->get();
+
+        return view('gelombang.index', compact('data'));
     }
 
     /**
@@ -19,7 +22,7 @@ class GelombangController extends Controller
      */
     public function create()
     {
-        //
+        return view('gelombang.create');
     }
 
     /**
@@ -27,7 +30,9 @@ class GelombangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gelombang::create($request->all());
+
+        return redirect()->to('gelombang');
     }
 
     /**
@@ -43,7 +48,9 @@ class GelombangController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $edit = Gelombang::find($id);
+
+        return view('gelombang.edit', compact('edit'));
     }
 
     /**
@@ -51,7 +58,12 @@ class GelombangController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Gelombang::where('id', $id)->update([
+            'nama_gelombang' => $request->nama_gelombang,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->to('gelombang');
     }
 
     /**
@@ -59,6 +71,8 @@ class GelombangController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Gelombang::where('id', $id)->delete();
+
+        return redirect()->to('gelombang');
     }
 }

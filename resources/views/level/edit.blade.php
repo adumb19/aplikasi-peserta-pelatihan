@@ -35,7 +35,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <form action="{{ route('level.store', $edit->id) }}" method="POST">
+    <form action="{{ route('level.update', $edit->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group mb-3">

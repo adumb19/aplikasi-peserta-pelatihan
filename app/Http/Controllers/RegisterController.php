@@ -33,7 +33,6 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
         Peserta::create([
             'nik' => $request->nik,
             'nama' => $request->nama,

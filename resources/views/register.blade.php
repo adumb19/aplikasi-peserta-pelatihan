@@ -70,14 +70,14 @@
             <select name="id_jurusan" id="" class="mb-4 form-select form-control">
                 <option value="" disabled selected>Pilih Jurusan</option>
                 @foreach ($jurusan as $item)
-                    <option value="{{ $item->id_jurusan }}">{{ $item->nama_jurusan }}</option>
+                    <option value="{{ $item->id }}">{{ $item->nama_jurusan }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="input-group">
             <input type="text" readonly value="{{ $gelombang->nama_gelombang }}" class="mb-4 form-control" placeholder="Nama Gelombang">
-            <input type="hidden" name="id_gelombang" value="{{ $gelombang->nama_gelombang }}" class="form-control">
+            <input type="hidden" name="id_gelombang" value="{{ $gelombang->id }}" class="form-control">
         </div>
 
         <div class="input-group">

@@ -46,8 +46,8 @@
             <label for="">Status</label>
             <select name="status" id="" class="form-control">
                 <option value="" disabled selected>Pilih Status</option>
-                <option value="1">Aktif</option>
-                <option value="0">Tidak Aktif</option>
+                <option value="1" {{ $edit->status == 1 ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ $edit->status == 0 ? 'selected' : '' }}>Tidak Aktif</option>
             </select>
         </div>
         <div class="form-group mb-3">

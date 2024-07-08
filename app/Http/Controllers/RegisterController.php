@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
+use App\Models\Jurusan;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -11,7 +14,10 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register');
+        $jurusan = Jurusan::orderBy('id', 'desc')->get();
+        $gelombang = Gelombang::latest()->first();
+
+        return view('register', compact('jurusan', 'gelombang'));
     }
 
     /**
@@ -27,7 +33,21 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
+        Peserta::create([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'no_hp' => $request->no_hp,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'pendidikan' => $request->pendidikan,
+            'alamat' => $request->alamat,
+            'tahun' => date('Y'),
+            'id_jurusan' => $request->id_jurusan,
+            'id_gelombang' => $request->id_gelombang,
+        ]);
+
+        return redirect()->to('home');
     }
 
     /**

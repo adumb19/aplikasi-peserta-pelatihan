@@ -21,6 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('login', [LoginController::class, 'index']);
 Route::post('actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
 Route::get('register', [RegisterController::class, 'index']);
+Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 // Route::middleware('auth')->group(function() {
 //     Route::resource('dashboard', DashboardController::class);

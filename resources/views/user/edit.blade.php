@@ -45,9 +45,10 @@
         <div class="form-group mb-3">
           <label for="">Level</label>
           <select name="id_level" class="form-control">
-            <option value="" disabled selected>Pilih Level</option>
+            <option value="" disabled>Pilih Level</option>
             @foreach ($data as $key => $d)
-            <option value="{{ $d->id }}">{{ $d->nama_level }}</option>
+            <option value="{{ $d->id }}" {{ $edit->id_level == $d->id ? 'selected' : '' }}>{{ $d->nama_level }}</option>
+            {{-- <option value="{{ $d->id }}">{{ $d->nama_level }}</option> --}}
             @endforeach
           </select>
         </div>

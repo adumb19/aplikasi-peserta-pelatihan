@@ -1,3 +1,16 @@
+@php
+    function customStatus($status){
+        switch ($status) {
+          case 1:
+            $display = 'Aktif';
+            break;
+          default:
+            $display = 'Tidak Aktif';
+            break;
+        }
+        return $display;
+      }
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +66,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->nama_gelombang }}</td>
-                    <td>{{ $d->status }}</td>
+                    <td>{{ customStatus($d->status) }}</td>
                     <td>
                       <a href="{{ route('gelombang.edit', $d->id) }}" class="btn btn-ss bg-success"><i class="fas fa-edit"></i></a>
                       <form action="{{ route('gelombang.destroy', $d->id) }}" method="POST" class="d-inline">

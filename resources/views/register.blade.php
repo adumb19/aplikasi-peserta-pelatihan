@@ -24,7 +24,8 @@
     <div class="card-body" style="width: 800px; right: 200px">
       <h4 class="login-box-msg">Pendaftaran Peserta PPKD Jakarta Pusat</h4>
 
-      <form class="peserta " method="post">
+      <form action="{{ route('register.store') }}" class="peserta" method="post">
+        @csrf
         <div class="input-group">
             <input name="nik" type="text" class="mb-4 form-control"
                 id=""
@@ -41,20 +42,20 @@
                 placeholder="Masukan Email Anda">
         </div>
         <div class="input-group">
-            <input name="phone" type="tel" class="mb-4 form-control"
+            <input name="no_hp" type="tel" class="mb-4 form-control"
                 id=""
                 placeholder="Masukan Nomor HP Anda">
         </div>
         <div class="input-group">
-            <select name="gender" id="" class="mb-4 form-control">
-                <option value="">Pilih Jenis Kelamin</option>
+            <select name="jenis_kelamin" id="" class="mb-4 form-control">
+                <option value="" disabled selected>Pilih Jenis Kelamin</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
             </select>
         </div>
         <div class="input-group">
             <select name="pendidikan" id="" class="mb-4 form-control">
-                <option value="">Pendidikan Terakhir</option>
+                <option value="" disabled selected>Pendidikan Terakhir</option>
                 <option value="SD">SD</option>
                 <option value="SMP">SMP</option>
                 <option value="SMA/SMK">SMA/SMK</option>
@@ -67,19 +68,20 @@
 
         <div class="input-group">
             <select name="id_jurusan" id="" class="mb-4 form-select form-control">
-                <option value="">Pilih Jurusan</option>
+                <option value="" disabled selected>Pilih Jurusan</option>
+                @foreach ($jurusan as $item)
+                    <option value="{{ $item->id_jurusan }}">{{ $item->nama_jurusan }}</option>
+                @endforeach
             </select>
         </div>
 
         <div class="input-group">
-            <input type="text" readonly value="" class="mb-4 form-control" placeholder="Nama Gelombang">
-            <input type="hidden" name="id_gelombang" value="" class="form-control">
+            <input type="text" readonly value="{{ $gelombang->nama_gelombang }}" class="mb-4 form-control" placeholder="Nama Gelombang">
+            <input type="hidden" name="id_gelombang" value="{{ $gelombang->nama_gelombang }}" class="form-control">
         </div>
 
         <div class="input-group">
-            <input name="alamat" type="text" class="mb-4 form-control form-control"
-                id=""
-                placeholder="Masukan Alamat Anda">
+            <textarea name="alamat" id="" class="form-control" cols="auto" rows="3" placeholder="Masukan Alamat Anda"></textarea>
         </div>
         <button name="register" type="submit" class="mt-5 btn btn-primary btn btn-block">
             Daftar

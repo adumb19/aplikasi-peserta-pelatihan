@@ -55,21 +55,26 @@
                 </tr>
             </thead>
             <tbody>
+              @foreach ($data as $item)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->id_jurusan }}</td>
+                    <td>{{ $item->id_gelombang }}</td>
+                    <td>{{ $item->tahun }}</td>
+                    <td>{{ $item->nik }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ $item->jenis_kelamin }}</td>
+                    <td>{{ $item->email }}</td>
+                    <td>{{ $item->no_hp }}</td>
+                    <td>{{ $item->pendidikan }}</td>
+                    <td>{{ $item->alamat }}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                      <a href="">Ubah</a>
+                      <a href="">Hapus</a>
+                    </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

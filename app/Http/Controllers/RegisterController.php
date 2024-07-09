@@ -15,7 +15,7 @@ class RegisterController extends Controller
     public function index()
     {
         $jurusan = Jurusan::orderBy('id', 'desc')->get();
-        $gelombang = Gelombang::latest()->first();
+        $gelombang = Gelombang::oldest()->first();
 
         return view('register', compact('jurusan', 'gelombang'));
     }

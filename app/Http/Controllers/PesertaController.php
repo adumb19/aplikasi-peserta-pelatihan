@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 
 class PesertaController extends Controller
@@ -11,7 +12,9 @@ class PesertaController extends Controller
      */
     public function index()
     {
-        return view('peserta.index');
+        $data = Peserta::orderBy('id', 'desc')->get();
+
+        return view('peserta.index', compact('data'));
     }
 
     /**

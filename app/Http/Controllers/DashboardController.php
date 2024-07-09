@@ -12,7 +12,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data = Peserta::orderBy('id', 'desc')->get();
+        $data = Peserta::with(['jurusan', 'gelombang'])->get();
+        
         return view('dashboard.index', compact('data'));
     }
 

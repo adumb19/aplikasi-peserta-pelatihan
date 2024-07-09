@@ -12,7 +12,8 @@ class PesertaController extends Controller
      */
     public function index()
     {
-        $data = Peserta::orderBy('id', 'desc')->get();
+        // $data = Peserta::orderBy('id', 'desc')->get();
+        $data = Peserta::with(['jurusan', 'gelombang'])->get();
 
         return view('peserta.index', compact('data'));
     }

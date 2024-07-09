@@ -1,3 +1,24 @@
+@php
+    function statusPeserta($status) {
+      switch ($status) {
+        case 1:
+          $pesan = "Lolos Sortir";
+          break;
+        case 2:
+          $pesan = "Lolos Wawancara";
+          break;
+        case 3:
+          $pesan = "Lolos Seleksi";
+          break;
+        
+        default:
+          $pesan = "Tidak Lolos";
+          break;
+      }
+      return $pesan;
+    }    
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +107,7 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-secondary">
               <div class="inner">
                 <h3>65</h3>
 
@@ -120,15 +141,14 @@
                   <th>Pendidikan Terakhir</th>
                   <th>Alamat</th>
                   <th>Status</th>
-                  <th>Aksi</th>
               </tr>
           </thead>
           <tbody>
             @foreach ($data as $item)
               <tr>
                   <td>{{ $loop->iteration }}</td>
-                  <td>{{ $item->id_jurusan }}</td>
-                  <td>{{ $item->id_gelombang }}</td>
+                  <td>{{ $item->jurusan->nama_jurusan }}</td>
+                  <td>{{ $item->gelombang->nama_gelombang }}</td>
                   <td>{{ $item->tahun }}</td>
                   <td>{{ $item->nik }}</td>
                   <td>{{ $item->nama }}</td>
@@ -137,11 +157,7 @@
                   <td>{{ $item->no_hp }}</td>
                   <td>{{ $item->pendidikan }}</td>
                   <td>{{ $item->alamat }}</td>
-                  <td></td>
-                  <td>
-                    <a href="">Ubah</a>
-                    <a href="">Hapus</a>
-                  </td>
+                  <td>{{ statusPeserta($item->status) }}</td>
               </tr>
               @endforeach
           </tbody>

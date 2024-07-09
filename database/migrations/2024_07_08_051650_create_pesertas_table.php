@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('tahun', 5);
             $table->integer('id_jurusan');
             $table->integer('id_gelombang');
+            $table->tinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

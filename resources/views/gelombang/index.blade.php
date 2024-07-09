@@ -1,5 +1,5 @@
 @php
-    function customStatus($status){
+    function isActive($status){
         switch ($status) {
           case 1:
             $display = 'Aktif';
@@ -66,7 +66,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->nama_gelombang }}</td>
-                    <td>{{ customStatus($d->status) }}</td>
+                    <td>{{ isActive($d->status) }}</td>
                     <td>
                       <a href="{{ route('gelombang.edit', $d->id) }}" class="btn btn-ss bg-success"><i class="fas fa-edit"></i></a>
                       <form action="{{ route('gelombang.destroy', $d->id) }}" method="POST" class="d-inline">

@@ -1,3 +1,24 @@
+@php
+    function statusPeserta($status) {
+      switch ($status) {
+        case 1:
+          $pesan = "Lolos Sortir";
+          break;
+        case 2:
+          $pesan = "Lolos Wawancara";
+          break;
+        case 3:
+          $pesan = "Lolos Seleksi";
+          break;
+        
+        default:
+          $pesan = "Tidak Lolos";
+          break;
+      }
+      return $pesan;
+    }    
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,8 +79,8 @@
               @foreach ($data as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->id_jurusan }}</td>
-                    <td>{{ $item->id_gelombang }}</td>
+                    <td>{{ $item->jurusan->nama_jurusan }}</td>
+                    <td>{{ $item->gelombang->nama_gelombang }}</td>
                     <td>{{ $item->tahun }}</td>
                     <td>{{ $item->nik }}</td>
                     <td>{{ $item->nama }}</td>
@@ -68,7 +89,7 @@
                     <td>{{ $item->no_hp }}</td>
                     <td>{{ $item->pendidikan }}</td>
                     <td>{{ $item->alamat }}</td>
-                    <td></td>
+                    <td>{{ statusPeserta($item->status) }}</td>
                     <td>
                       <a href="">Ubah</a>
                       <a href="">Hapus</a>
